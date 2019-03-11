@@ -7,8 +7,9 @@ public class Accounts{
          * Handles user accounts
          */
 
-         private string oldUserAccFileDest;
-         private string newUserAccFileDest;
+         private String oldUserAccFileDest;
+         private String newUserAccFileDest;
+         private int transCode;
 
          /**
           * Uses transaction file and account file to check if username is unique

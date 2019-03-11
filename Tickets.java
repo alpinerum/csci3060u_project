@@ -7,8 +7,8 @@ public class Tickets{
          * Reads the Daily transaction file
          */
 
-         private string oldTixFileDest;
-         private string newTixDest;
+         private String oldTixFileDest;
+         private String newTixDest;
 
          /**
           * Merges the transaction file into the tickets file

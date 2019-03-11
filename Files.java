@@ -7,8 +7,8 @@ public class Files{
          * Reads the Daily transaction file
          */
 
-        public static void readFileAsStr(String fileName) throws IOException{
-            TODO: Returns the text in the file as a list of string
+        public static void readFileAsStr(String fileName){
+            //TODO: Returns the text in the file as a list of string
         }
 
       	File transFile = new File();//getting the directory where the daily transaction files are
@@ -25,10 +25,5 @@ public class Files{
         public negativeTixCheck(int transacCode, String inputFileName) {
         	//TODO: check for negative values of tickets left
         }
-
-        public String[] listOfTransacFile ( File transacFileDirectory){
-        	//TODOL returns list of transaction files in the directory it the form of String[]
-        }
-
-
     }
+  }
