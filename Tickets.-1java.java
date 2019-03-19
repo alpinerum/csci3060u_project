@@ -38,11 +38,11 @@ public class Tickets {
             int tixPrice = getTixPrice(lineInTixParseFile);
                 
                 
-                if ((tixQtyNeeded > tixQtyInFile) && (userCredit< (tixQtyInFile*tixPrice)) ){
+                if ((tixQtyNeeded > tixQtyInFile) && (userCredit< (tixQtyNeeded*tixPrice)) ){
                     System.out.println("There is not enough tickets to sell to the customer");
                     //break; //maybe we should not use break?
                 }
-                else if ((tixQtyNeeded < tixQtyInFile) && (userCredit> (tixQtyInFile*tixPrice))){
+                else if ((tixQtyNeeded < tixQtyInFile) && (userCredit> (tixQtyNeeded*tixPrice))){
                     buyTrancValid= true;    
             }    
          
