@@ -59,6 +59,7 @@ public class Tickets {
                         for ( int i = 0; i < (3-newTixQtyAvail.length()); i ++){
                             newTixQtyAppend+='0';
                         }
+                        newTixQtyAppend+=newTixQtyAvail;
                }else{
                         newTixQtyAppend+=newTixQtyAvail;
                     }
