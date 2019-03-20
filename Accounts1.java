@@ -226,5 +226,28 @@ public class Accounts1 {
         
     }
     
+    public int getTixNeeded ( String lineInAccParseFile){
+        int tixStartIndex= 37;
+         int tixQtyInTranFile = 0;
+            if (lineInAccParseFile != null){
+                int j = 3;
+                while(j>0){
+                    
+                    if (lineInAccParseFile.charAt(37) == '0'){
+                        j--;
+                        tixStartIndex++;
+                    }
+                    else{
+                        j= 0; //might have error here
+                    }     
+                    
+                }
+                tixQtyInTranFile = Integer.parseInt(lineInAccParseFile.substring(tixStartIndex,41));
+                return tixQtyInTranFile;
+              }
+           System.out.println("no such event found"); 
+          return tixQtyInTranFile;
+    }
+    
     
 }
