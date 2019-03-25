@@ -13,6 +13,7 @@ import java.util.*;
 public class Accounts1 {
     //this method gets the username from a normal daily Transaction file
     public String getUserName(String newUserAccEntry){ //assuming we have converted the .output file into a string
+    // this method retrieves the username from the daily transaction file when the trransaction code is 01,02,06,or 00,
         int i = 15;
         int firstChar =3;
         int endChar= 0;
