@@ -34,6 +34,8 @@ public class Phase4 {
         tixObj.parseFile(tixDirectory, tixFileList);
         tixObj.parseFile(accDirectory, accFileList);
         tixObj.parseFile(outPutFile, trancFileList);
+        
+        //reading through each line of merged daily transaction file
         for( int i = 0; i < trancFileList.size(); i ++){
             String transCode= "";
             String entryWithoutTransCode= "";
