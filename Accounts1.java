@@ -11,9 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.*;
 public class Accounts1 {
-    //this method gets the username from a normal daily Transaction file
-    public String getUserName(String newUserAccEntry){ //assuming we have converted the .output file into a string
-    // this method retrieves the username from the daily transaction file when the trransaction code is 01,02,06,or 00,
+    
+    public String getUserName(String newUserAccEntry){ 
+    /*this method retrieves the buyer username from the daily transaction file when the trransaction code is 01,02,06,or 00, 05
+        by parsing in the daily transaction file line Entry */
         int i = 15;
         int firstChar =3;
         int endChar= 0;
@@ -33,14 +34,15 @@ public class Accounts1 {
         return newUserName = newUserAccEntry.substring(3,(endChar+1));
     }
     
-    public String getSellerUserNameRefund(String refundOutputEntry){ //this mtd gets the seller username,for refund .output file
-        int i = 15;
-        int firstChar =19;
+    public String getSellerName( String buySellTransacLine){ //new mtd
+        //this method returns the seller name for transaction code 03,04
+        int i = 13;
+        int firstChar =23;
         int endChar= 0;
-        String sellerUserName;
+        String newUserName;
         while(i>0){
-            char firstCharName = refundOutputEntry.charAt(firstChar);
-            char neighbourCharName= refundOutputEntry.charAt(firstChar+1);
+            char firstCharName = buySellTransacLine.charAt(firstChar);
+            char neighbourCharName= buySellTransacLine.charAt(firstChar+1);
             if ((firstCharName==' ') && (neighbourCharName==' ')){
                 endChar= firstChar-1;
                 i=0;
@@ -50,11 +52,36 @@ public class Accounts1 {
                 firstChar++;
             }
         }
-        return sellerUserName = refundOutputEntry.substring(19,(endChar+1));
+        return newUserName = buySellTransacLine.substring(23,(endChar+1));
     }
     
-    public boolean uniqueUserNameCheck(String newUserName, ArrayList<String> oldAccTixFile){ //gets username from.output file and check 
-                                                                                            //check against accountfile
+    public String getSellerUserNameRefund(String refundDailyTransLine){ 
+//this mtd gets the seller username when transaction code is 05 by passing the refund transaction line
+        int i = 15;
+        int firstChar =19;
+        int endChar= 0;
+        String sellerUserName;
+        while(i>0){
+            char firstCharName = refundDailyTransLine.charAt(firstChar);
+            char neighbourCharName= refundDailyTransLine.charAt(firstChar+1);
+            if ((firstCharName==' ') && (neighbourCharName==' ')){
+                endChar= firstChar-1;
+                i=0;
+            }
+            else{
+                i--;
+                firstChar++;
+            }
+        }
+        return sellerUserName = refundDailyTransLine.substring(19,(endChar+1));
+    }
+    
+  
+    
+    public boolean uniqueUserNameCheck(String newUserName, ArrayList<String> oldAccTixFile){ 
+//gets username from the daily transaction file and check against accountfile
+        //use it when transaction code is 01
+                                                                                            
         for ( int i = 0; i < oldAccTixFile.size();i++ ){
             String entryInOldAccFile= oldAccTixFile.get(i);
             if(entryInOldAccFile.contains(newUserName)){
@@ -67,8 +94,8 @@ public class Accounts1 {
         //might need to delete the output file that is not valid?
     } 
     
-    public float getUserCreditFromOutputFile(String newUserAccEntry){ //use this if ID code is 01,02,06,00
-        //get the credit from the .output file
+    public float getBuyerCreditFromTransFile(String newUserAccEntry){ 
+        //this method returns the buyer available credit, use  when trans code is 01,02,06
         int userCreditIndex= 22;
         int k = 9;
         float userCredit= 0;
@@ -86,8 +113,8 @@ public class Accounts1 {
     }
     
     public void appendRefundCredit(String sellerName, String buyerName,float refundCredit, ArrayList<String> updatedParseAccList){
-      
-        String sellerNameinAcc= getCorrespondingLineInParseAccFile(sellerName,updatedParseAccList);//getting output line in accfile for seller
+      // this method appends the refund credit from seller to buyer and updates the accounts file accordingly
+        String sellerNameinAcc= getCorrespondingLineInParseAccFile(sellerName,updatedParseAccList);//getting account transcation line in accfile for seller
         String buyerNameinAcc= getCorrespondingLineInParseAccFile(buyerName,updatedParseAccList);
         float sellerCreditinAccFile= getCreditFromAccFile(sellerNameinAcc);
         float buyerCreditInAccFile= getCreditFromAccFile(buyerName);
@@ -97,12 +124,30 @@ public class Accounts1 {
         String sellerAppendFormat= convertCreditFormat(newSellerCredit);
         editCreditInAccFile(updatedParseAccList,sellerName,  sellerAppendFormat);
         editCreditInAccFile(updatedParseAccList,buyerName, buyerAppendFormat);       
-                
+       
+    }
+    
+    public float getRefundCredit(String refundTransactionItem){ //new method
+        // this method returns the refund credit that is stated in the daily transaction file with code 05
+        int userCreditIndex= 35;
+        int k = 9;
+        float userCredit= 0;
+        while( k >0){
+            if (refundTransactionItem.charAt(35)==0){
+                k--;
+                userCreditIndex++;
+            }
+            else{
+                k = 0;
+            }
+            
+        }
+       return userCredit= Float.parseFloat(refundTransactionItem.substring(userCreditIndex,44));
         
-
     }
     
     public float getCreditFromAccFile(String lineInAccParseFile){
+       // this method returns the credit amount of a user in the accounts file
         int userCreditIndex= 19;
         int k = 9;
         float userCredit= 0;
@@ -121,6 +166,7 @@ public class Accounts1 {
     
       
     public String getCorrespondingLineInParseAccFile(String userNameToSearch, ArrayList<String> updatedParseAccList){
+        //this method returns the corresponding entry in the accounnt file based on username
            String lineInAccParseFile;
            for (int i = 0; i < updatedParseAccList.size(); i ++){
                lineInAccParseFile= updatedParseAccList.get(i);
@@ -129,7 +175,7 @@ public class Accounts1 {
                }
               
         }
-           return null;
+           return null; //might remove this mtd
     }
     
     public String convertCreditFormat(String creditValue){ //convert the credit from str to the correct format listed in the proj
@@ -145,6 +191,7 @@ public class Accounts1 {
         return creditValueToAppend;
         }
     public void editCreditInAccFile(ArrayList<String> updatedParseAccList, String userNametoSearch, String creditToAppend){
+        //this method edits the credit value in the account file based on username and the credit to append
         for(int i = 0; i < updatedParseAccList.size(); i++){
                     
                if ( updatedParseAccList.get(i).contains(userNametoSearch)){
@@ -159,6 +206,7 @@ public class Accounts1 {
         }
     
     public void deleteUser(String userNameToDelete,ArrayList<String> updatedParseAccList ){
+        //this method deletes a user account from the accounts file
         for(int i = 0; i < updatedParseAccList.size(); i++){
             if ( updatedParseAccList.get(i).contains(userNameToDelete)){
                 String deleteUserEntry= updatedParseAccList.get(i);
@@ -168,6 +216,7 @@ public class Accounts1 {
     }  
     
     public void addNewUserToAccFile(boolean userNameUnique,String newUserTransFile, ArrayList<String> updatedParseAccList){
+        //this method adds a newly created account to the account file. use it when the code ID is 01
         if (userNameUnique== true){
             updatedParseAccList.add(newUserTransFile);
             //note, for this mtd, we need to pass in the daily transac file of the newly create acc as a String.
@@ -175,6 +224,8 @@ public class Accounts1 {
     }
     
     public float addCreditToUser(float userCredit, float initialCreditInAccFile){
+        // adds new credit to the user. 
+        //user this method if code ID is 05
         if (userCredit > 1000.00){
             System.out.println("Maximum Top up credit is 1000.000");
             return 0;
@@ -188,6 +239,8 @@ public class Accounts1 {
             
        }
     public float creditForBuyTrans(boolean buyTranValid, float buyerCredit,int tixPrice, int tixQtyNeeded){
+        //this method returns the buyer's new credit value after buying a ticket from an event.
+        //use when code ID is 04
         float newBuyCreditTrans = 0;
         if ( buyTranValid == true){
             //int tixQtyNeeded= tixQtyInFile -tixQtyAfterTrans;
@@ -198,6 +251,8 @@ public class Accounts1 {
         return newBuyCreditTrans;
     }
     public float creditForSellTrans(boolean buyTranValid, float sellerCredit, int tixPrice, int tixQtyNeeded){
+        //this method returns the seller's new credit value after buying a ticket from an event.
+        //use when code ID is 04
         float newSellCreditTrans = 0;
         if ( buyTranValid == true){
         newSellCreditTrans = sellerCredit + (tixQtyNeeded*tixPrice);
@@ -207,7 +262,8 @@ public class Accounts1 {
         return newSellCreditTrans;
     }
     
-    public int tixQtyAfterTrans(String sellDailyTrans){ //for buy, its the no. of tix buyer wants to buy
+    /*public int tixQtyAfterTrans(String sellDailyTrans){ 
+//for buy, its the no. of tix buyer wants to buy
         int tixQtyStartIndex = 38;
         int j = 3;
                 while(j>0){
@@ -225,9 +281,10 @@ public class Accounts1 {
                 int tixQtyNeeded = Integer.parseInt(sellDailyTrans.substring(tixQtyStartIndex,41));
                 return tixQtyNeeded;
         
-    }
+    }*/
     
     public int getTixNeeded ( String lineInAccParseFile){
+        //this method returns the number tickets that buy transaction daily file states for tansaction code 04 getCreditFromAccFile
         int tixStartIndex= 37;
          int tixQtyInTranFile = 0;
             if (lineInAccParseFile != null){
@@ -243,7 +300,7 @@ public class Accounts1 {
                     }     
                     
                 }
-                tixQtyInTranFile = Integer.parseInt(lineInAccParseFile.substring(tixStartIndex,41));
+                tixQtyInTranFile = Integer.parseInt(lineInAccParseFile.substring(tixStartIndex,40));
                 return tixQtyInTranFile;
               }
            System.out.println("no such event found"); 
