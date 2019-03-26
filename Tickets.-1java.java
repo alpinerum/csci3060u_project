@@ -14,6 +14,7 @@ import java.util.*;
 public class Tickets {
     
     public void parseFile(String tixDirectory, ArrayList<String> updatedParseTixList) throws IOException{
+        //this method parse the .output files in the directory and converts them into string arraylist
         BufferedReader reader;
         ArrayList<String> parseTixList= new ArrayList<String>();
         try {
@@ -31,18 +32,19 @@ public class Tickets {
         }
     }
     public boolean checkBuyTixValid(int tixQtyNeeded, float userCredit,String lineInTixParseFile){
+        //this method checks if a buyer has enough credits to buy tix for an event
         boolean buyTrancValid = false;
        
         
-            int tixQtyInFile = getQty(lineInTixParseFile);
+            int tixQtyInTixFile = getQty(lineInTixParseFile);
             int tixPrice = getTixPrice(lineInTixParseFile);
                 
                 
-                if ((tixQtyNeeded > tixQtyInFile) && (userCredit< (tixQtyNeeded*tixPrice)) ){
+                if ((tixQtyNeeded > tixQtyInTixFile) && (userCredit< (tixQtyNeeded*tixPrice)) ){
                     System.out.println("There is not enough tickets to sell to the customer");
                     //break; //maybe we should not use break?
                 }
-                else if ((tixQtyNeeded < tixQtyInFile) && (userCredit> (tixQtyNeeded*tixPrice))){
+                else if ((tixQtyNeeded < tixQtyInTixFile) && (userCredit> (tixQtyNeeded*tixPrice))){
                     buyTrancValid= true;    
             }    
          
@@ -50,27 +52,30 @@ public class Tickets {
        return buyTrancValid;
        
     }
-    public void editTixTextFile(boolean buyTranValid,int tixQtyNeeded, String eventSellerName,String lineInTixParseFile ,ArrayList<String> updatedParseTixList){
+    public void editTixTextFile(boolean buyTranValid,int tixQtyNeeded, String eventSellerName,String lineInTixParseFile ,ArrayList<String> tixFileList){
+        /*this method will create a new tix file entry with the correct tix qty ect, remove the corresponding entry and append 
+        the new entry to tixFile*/
         String newTixLineToRemove;
         if(buyTranValid == true){
-                    String newTixQtyAvail= Integer.toString(getQty(lineInTixParseFile) - tixQtyNeeded);
+                    String newTixQtyAvail= Integer.toString(getQty(lineInTixParseFile) - tixQtyNeeded); // getting the remaining tix avail after transaction
                     String newTixQtyAppend= "";
                     if ( newTixQtyAvail.length()< 3){
                         for ( int i = 0; i < (3-newTixQtyAvail.length()); i ++){
-                            newTixQtyAppend+='0';
+                            newTixQtyAppend+='0'; // returning the quantity in string format based on the format stated eg 003
                         }
                         newTixQtyAppend+=newTixQtyAvail;
                }else{
-                        newTixQtyAppend+=newTixQtyAvail;
+                        newTixQtyAppend+=newTixQtyAvail; // if the quantity is eg 123
                     }
-                for(int i = 0; i < updatedParseTixList.size(); i++){
                     
-               if ( updatedParseTixList.get(i).contains(eventSellerName)){
-                   newTixLineToRemove= updatedParseTixList.get(i);
+                for(int i = 0; i < tixFileList.size(); i++){
+                    
+               if ( tixFileList.get(i).contains(eventSellerName)){
+                   newTixLineToRemove= tixFileList.get(i);
                
-                   String x = updatedParseTixList.get(i).substring(0, 35) + newTixQtyAppend + updatedParseTixList.get(i).substring(38, 45);
-                   updatedParseTixList.remove(newTixLineToRemove);
-                   updatedParseTixList.add(x);
+                   String x = tixFileList.get(i).substring(0, 35) + newTixQtyAppend + tixFileList.get(i).substring(38, 45);
+                   tixFileList.remove(newTixLineToRemove); // cuz string cannot be replaced explicitly, so need to remove and add the one to replace
+                   tixFileList.add(x);
                         
                }
                
@@ -82,6 +87,7 @@ public class Tickets {
     
     
     public void checkNegTix(ArrayList<String> updatedParseTixList){
+        // this method checks that there is no negativetickets in the tixList
         for ( int i = 0; i < updatedParseTixList.size(); i++){
             String eventNameinTixFile= null;
             int tixStartIndex= 35;
@@ -104,7 +110,8 @@ public class Tickets {
             
           }
     }
-    public int getQty(String lineInTixParseFile){
+    public int getQty(String lineInTixParseFile){ 
+//returns the available tix qty for a event in the tix Transaction file
          int tixStartIndex= 35;
          int tixQtyInFile = 0;
             if (lineInTixParseFile != null){
@@ -127,6 +134,7 @@ public class Tickets {
           return tixQtyInFile;
        }
     public int getTixPrice (String lineInTixParseFile){
+//returns the price per tix for a event in the tix Transaction file
         int priceStartIndex= 39;
          int tixPrice = 0;
                 int k = 6;
@@ -151,7 +159,7 @@ public class Tickets {
         return tixPrice;
     }
     
-    public String getCorrespondingLineInParseTixFile(String eventSellerName, ArrayList<String> updatedParseTixList){
+    /*public String getCorrespondingLineInParseTixFile(String eventSellerName, ArrayList<String> updatedParseTixList){
            String lineInTixParseFile;
            for (int i = 0; i < updatedParseTixList.size(); i ++){
                lineInTixParseFile= updatedParseTixList.get(i);
@@ -161,5 +169,5 @@ public class Tickets {
               
         }
            return null;
-    }
+    }*/
 }
