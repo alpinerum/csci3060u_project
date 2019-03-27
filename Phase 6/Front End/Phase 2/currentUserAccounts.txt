@@ -1,0 +1,4 @@
+user01         AA 100.50
+user02         FS 200.75
+user03         BS 35.25
+END

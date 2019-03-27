@@ -1,0 +1,31 @@
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+login
+Welcome to our Ticket Selling System
+Please enter your username: user01
+name = user01
+status = AA
+balance = 0
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+sell
+Enter the event name: hello
+Enter the ticket price: 40.99
+Enter the amount of tickets: 300
+Error: ticket quantity cannot exceed 100.
+Enter the amount of tickets:

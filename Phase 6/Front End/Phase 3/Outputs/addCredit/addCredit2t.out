@@ -1,0 +1,46 @@
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+login
+Welcome to our Ticket Selling System
+Please enter your username: user01
+name = user01
+status = AA
+balance = 0
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+addCredit
+Which user would you like to add the credit to?
+user01
+How much credit would you like to add?
+1000
+Users cannot have more than $999.99 in their accounts.
+How much credit would you like to add?
+100
+username = user01 new balance = $100
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+logout
+Logout Succesful!

@@ -1,0 +1,41 @@
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+login
+Welcome to our Ticket Selling System
+Please enter your username: user01
+name = user01
+status = AA
+balance = 0
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+delete
+Which user would you like to delete?
+user02
+Success user deleted
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+logout
+Logout Succesful!

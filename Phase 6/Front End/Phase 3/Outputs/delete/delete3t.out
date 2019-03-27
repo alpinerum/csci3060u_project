@@ -1,0 +1,62 @@
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+login
+Welcome to our Ticket Selling System
+Please enter your username: user01
+name = user01
+status = AA
+balance = 50
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+delete
+Which user would you like to delete?
+user02
+Success user deleted
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+buy
+You have $50 balance in your account.
+Here are the current tickets for sale:
+Event Name = Superbowl50        Seller Name = user01    Amount of Tickets = 1   Price per Ticket = $10
+Event Name = Superbowl51        Seller Name = user01    Amount of Tickets = 2   Price per Ticket = $20
+Event Name = Superbowl52        Seller Name = user02    Amount of Tickets = 3   Price per Ticket = $30
+Event Name = Superbowl53        Seller Name = user02    Amount of Tickets = 4   Price per Ticket = $40
+Enter which option you would like to buy tickets from :Superbowl52
+Enter the amount of tickets you wish to buy: 1
+Are you sure you want to buy these tickets? (Y/N):Y
+Tickets were purchased
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+logout
+Logout Succesful!

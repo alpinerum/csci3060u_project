@@ -1,0 +1,33 @@
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+login
+Welcome to our Ticket Selling System
+Please enter your username: user01
+name = user01
+status = AA
+balance = 0
+
+Welcome to the main menu. Please enter a command to continue
+login = Login
+create = Create Account
+delete = Delete Account
+buy = Buy Tickets
+sell = Sell Tickets
+refund = Refund Credits
+addCredit = Add Credits
+logout = Logout
+create
+To create a user, please enter a valid username:
+user05
+Please enter the type of user (AA, FS, BS, or SS)
+FS
+Enter the amount of credit to give this user
+100.00
+User created! name = user05 status = FS credit = $100
