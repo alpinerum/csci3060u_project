@@ -8,5 +8,5 @@ for i in $(seq 1 6); do
    cat ./FrontEnd/Phase3/transaction.txt >> Files/dailyTransaction.txt
 done
 echo "Running Back End"
-  java -cp ../Phase_5/Classes/ Phase4 ./Phase_6/Files/newAvailableTickets.txt ./Phase_6/Files/newUserAccounts.txt ./Phase_6/Files/dailyTransaction.txt
+  java -cp "../Phase_5/Classes" Phase4 ./Phase_6/Files/newAvailableTickets.txt ./Phase_6/Files/newUserAccounts.txt ./Phase_6/Files/dailyTransaction.txt
 echo "Daily Script Complete"
