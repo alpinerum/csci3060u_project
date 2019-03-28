@@ -2,10 +2,8 @@ login
 
 user01
 
-addCredit
+delete
 
-user01
-
-100
+user02
 
 logout

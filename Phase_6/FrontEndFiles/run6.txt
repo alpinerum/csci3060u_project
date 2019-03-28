@@ -2,10 +2,12 @@ login
 
 user01
 
-addCredit
+refund
 
 user01
 
-100
+user02
+
+50
 
 logout
