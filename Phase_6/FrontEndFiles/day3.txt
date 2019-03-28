@@ -1,0 +1,11 @@
+login
+
+user01
+
+addCredit
+
+user01
+
+100
+
+logout
